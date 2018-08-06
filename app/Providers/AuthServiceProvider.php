@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Providers;
-
-use Illuminate\Support\Facades\Gate;
+//use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Post;
+use App\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,9 +23,13 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        $this->registerPolicies();
+    public function boot(GateContract $gate)
+    { 
+        $this->registerPolicies($gate);
+
+        $gate->define('update-post', function(User $user, Post $post){
+            return $user->id == $post->user_id;
+        });
 
         //
     }
