@@ -25,8 +25,9 @@ class HomeController extends Controller
      */
     public function index(Post $post)
     {
-        //$posts = $post->all();
-        $posts = $post->where('user_id', auth()->user()->id)->get();
+        $posts = $post->all();
+        
+        //$posts = $post->where('user_id', auth()->user()->id)->get();
 
 
         return view('home', compact('posts'));
@@ -38,6 +39,8 @@ class HomeController extends Controller
 
         $post = Post::find($idPost);
 
+
+        //não permitir acessar post que não é autorizado pelo usuario
         if(Gate::denies('update-post', $post)){
             abort(403, "Unauthorized");
 
