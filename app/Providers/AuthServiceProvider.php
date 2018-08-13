@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Post;
 use App\User;
+use App\Permission;
 use App\Policies\PostPolicy;
 
 
@@ -19,9 +20,10 @@ class AuthServiceProvider extends ServiceProvider
 
     //definir a politica 
     protected $policies = [
-
+        /*
         Post::class  => PostPolicy::class,
-       
+       */
+
         
     ];
 
@@ -34,10 +36,27 @@ class AuthServiceProvider extends ServiceProvider
     { 
         $this->registerPolicies($gate);
 
-        /* $gate->define('update-post', function(User $user, Post $post){
+
+
+        /* 
+        $gate->define('update-post', function(User $user, Post $post){
             //verificar se o id do usuario logado é igual ao user_id // se for 
             return $user->id == $post->user_id;
-        }); */
+        }); 
+        */
+
+        $permissions = Permission::with('roles')->get();
+
+        foreach($permissions as $permission)
+        {
+            $gate->define($permission->name, function(User $user) use ($permission){
+                //verificar se o id do usuario logado é igual ao user_id // se for 
+                return $user->hasPermission($permission);
+            }); 
+        }
+
+        
+
         
 
         
