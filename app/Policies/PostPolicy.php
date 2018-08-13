@@ -32,6 +32,6 @@ class PostPolicy
             return $user->id == $post->user_id;
         }); */
 
-        return $user->id === $post->user_id;
+        return $user->id == $post->user_id;
     }
 }
