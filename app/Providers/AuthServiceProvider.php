@@ -45,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
         }); 
         */
 
-        $permissions = Permission::with('roles')->get();
+       $permissions = Permission::with('roles')->get();
 
         foreach($permissions as $permission)
         {
