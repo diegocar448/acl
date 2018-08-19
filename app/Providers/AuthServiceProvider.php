@@ -45,7 +45,12 @@ class AuthServiceProvider extends ServiceProvider
         }); 
         */
 
+        //aqui ele recupera todas as permissões e retorna um objeto
        $permissions = Permission::with('roles')->get();
+        //view_post => Manager, Editor
+        //delete_post => Manager
+        //edit_post => Manager
+
 
         foreach($permissions as $permission)
         {

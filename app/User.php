@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Permission;
-use Roles;
+use App\Role;
+use App\Permission;
+
+
 
 class User extends Authenticatable
 {
@@ -33,7 +35,7 @@ class User extends Authenticatable
     public function roles()
     {
         //Pegar todos os papeis que o cliente tem no sistema
-        $this->belongsToMany(Roles::class);
+        return $this->belongsToMany(Role::class);
     }
 
 
@@ -49,7 +51,15 @@ class User extends Authenticatable
     public function hasAnyRoles($roles)
     {
         //aqui vamos verificar se o usuario logado têm essa permissão especifica
-
+        if(is_array($roles) || is_object($roles)){
+            foreach($roles as $role){
+                var_dump($this->roles->contains('name', $role->name));
+                //pega o nome da regra
+                return $this->roles->contains('name', $role->name);
+            }
+        }
+        //Se existe alguma função/papel então retorna true
+        return $this->roles->contains('name', $roles);
 
     }
 }
