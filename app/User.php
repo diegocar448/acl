@@ -52,11 +52,8 @@ class User extends Authenticatable
     {
         //aqui vamos verificar se o usuario logado têm essa permissão especifica
         if(is_array($roles) || is_object($roles)){
-            foreach($roles as $role){
-                var_dump($this->roles->contains('name', $role->name));
-                //pega o nome da regra
-                return $this->roles->contains('name', $role->name);
-            }
+            //se retorna 1 retorna true se retornar 0 retorna false
+            return !! $roles->intersect($this->roles)->count();
         }
         //Se existe alguma função/papel então retorna true
         return $this->roles->contains('name', $roles);

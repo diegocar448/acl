@@ -59,6 +59,14 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->hasPermission($permission);
             }); 
         }
+        //ability == view_post, edit_post .....
+        //vai entrar aqui antes de fazer a verificação
+        //se existe adm ja terá previlegio antes de passar pelo gate
+        $gate->before(function(User $user, $ability){
+            if($user->hasAnyRoles('adm')) {
+                return true;
+            }
+        });
 
         
 

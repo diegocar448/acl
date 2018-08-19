@@ -34,4 +34,9 @@ class PostPolicy
 
         return $user->id == $post->user_id;
     }
+
+    public function before(User $user)
+    {
+        return $user->name == "Diego";
+    }
 }
