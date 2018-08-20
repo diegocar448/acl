@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('auth.templates.template')
 
-@section('content')
+@section('content-form')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
