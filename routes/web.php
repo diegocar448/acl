@@ -7,15 +7,17 @@ Route::group(['prefix' => 'painel'], function(){
     Route::get('posts', 'Painel\PostController@index');
 
     //PermissionControler
+    Route::get('permissions', 'Painel\PermissionController@index');
 
-    //RolesController
+    //RoleController
+    Route::get('roles', 'Painel\RoleController@index');
+    Route::get('role/{id}/permissions', 'Painel\RoleController@permissions');
+
+    //UserController
+    Route::get('users', 'Painel\UserController@index');
 
     //PainelController
     Route::get('/', 'Painel\PainelController@index');
-
-
-   // Route::get('/', ['as'=> 'painel.home.index', 'uses'=> 'Painel\PainelController@index']);
-
     
 });
 
