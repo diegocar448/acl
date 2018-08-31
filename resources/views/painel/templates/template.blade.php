@@ -61,20 +61,7 @@
 	</div><!--Menu-->
 
 	<div class="clear"></div>
-
-	<!--Filters and actions-->
-	<div class="actions">
-		<div class="container">
-			<a class="add" href="forms">
-				<i class="fa fa-plus-circle"></i>
-			</a>
-
-			<form class="form-search form form-inline">
-				<input type="text" name="pesquisar" placeholder="Pesquisar?" class="form-control">
-				<input type="submit" name="pesquisar" value="Encontrar" class="btn btn-success">
-			</form>
-		</div>
-	</div><!--Actions-->
+	
 
 	<div class="clear"></div>
 
