@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Post;
 use Gate;
-use App\Http\Controllers\Controller;
-
-
 
 class SiteController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
