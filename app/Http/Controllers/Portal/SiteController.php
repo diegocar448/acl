@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Portal;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Post;
 use Gate;
-
 use App\Http\Controllers\Controller;
+
 
 
 class SiteController extends Controller

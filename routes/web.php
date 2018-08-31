@@ -4,6 +4,7 @@
 
 Route::group(['prefix' => 'painel'], function(){
     //PostController
+    Route::get('posts', 'Painel\PostController@index');
 
     //PermissionControler
 
@@ -25,4 +26,4 @@ Auth::routes();
 
 
 
-Route::get('/', 'SiteController@index');
+Route::get('/', 'Portal\SiteController@index');
