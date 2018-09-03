@@ -28,7 +28,7 @@
       <tr>
           <th>Name</th>
           <th>E-mail</th>          
-          <th width="100px">Ações</th>
+          <th width="150px">Ações</th>
       </tr>
 
       @forelse($users as $user)
@@ -36,6 +36,9 @@
           <td>{{$user->name}}</td>
           <td>{{$user->email}}</td>          
           <td>
+              <a href="{{url("/painel/user/$user->id/roles")}}" class="permission">
+                  <i class="fa fa-unlock"></i>
+              </a>
               <a href="{{url("/painel/user/$user->id/edit")}}" class="edit">
                   <i class="fa fa-pencil-square-o"></i>
               </a>

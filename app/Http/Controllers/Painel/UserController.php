@@ -21,4 +21,15 @@ class UserController extends Controller
 
         return view('painel.users.index', compact('users'));
     }
+
+    public function roles($id)
+    {
+        //Recupera o usuário
+        $user = $this->user->find($id);
+
+        //recuperar as funções roles
+        $roles = $user->roles()->get();
+
+        return view('painel.users.roles', compact('user', 'roles'));
+    }
 }
