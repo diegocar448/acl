@@ -36,7 +36,7 @@
           <td>{{$role->name}}</td>
           <td>{{$role->label}}</td>          
           <td>
-              <a href="{{url("/painel/role/$role->id/permissions")}}" class="permission">
+              <a href="{{url("/painel/role/$role->id/permission")}}" class="permission">
                   <i class="fa fa-lock"></i>
               </a>
               <a href="{{url("/painel/role/$role->id/edit")}}" class="edit">

@@ -29,8 +29,7 @@
           <th>Title</th>
           <th>Desription</th>          
           <th width="100px">Ações</th>
-      </tr>
-
+      </tr>      
       @forelse($posts as $post)
       <tr>
           <td>{{$post->title}}</td>
@@ -52,8 +51,7 @@
             </p>
         </td>  
       </tr>
-      @endforelse
-      
+      @endforelse     
     </table>    
 </div>
 
