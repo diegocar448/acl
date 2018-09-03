@@ -19,6 +19,8 @@ class SiteController extends Controller
  
     public function index(Post $post)
     {
-        return view('portal.home.index');
+        //return view('portal.home.index');
+
+        return view('painel.templates.template');
     }
 }

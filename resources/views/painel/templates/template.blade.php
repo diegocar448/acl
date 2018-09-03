@@ -26,13 +26,21 @@
 				<a href="/painel">
 					<img src={{url("assets/painel/imgs/acl-branca.png")}} alt="acl" class="logo">
 				</a>
-			</li>			
+			</li>
+			@can('user')
 			<li class="col-md-2 text-center">
 				<a href="/painel/users">
 					<img src={{url("assets/painel/imgs/perfil-acl.png")}} alt="Meu Perfil" class="img-menu">
 					<h1>Usuários</h1>
 				</a>
 			</li>
+			@else 
+			<li class="col-md-2 text-center">				
+				<img src={{url("assets/painel/imgs/perfil-acl.png")}} alt="Meu Perfil" class="img-menu">
+				<h1>Usuários - Not Permission</h1>				
+			</li>
+			@endcan
+
 			@can('view_post')
 			<li class="col-md-2 text-center">
 				<a href="/painel/posts">
@@ -43,25 +51,42 @@
 			@else
 			<li class="col-md-2 text-center">				
 				<img src={{url("assets/painel/imgs/noticias-acl.png")}} alt="Estilos" class="img-menu">
-				<h1>Not Permission</h1>				
+				<h1>Posts - Not Permission</h1>				
 			</li>
 			@endcan
+
+			@can('adm')
 			<li class="col-md-2 text-center">
 				<a href="/painel/roles">
 					<img src={{url("assets/painel/imgs/funcao-acl.png")}} alt="Albuns" class="img-menu">
 					<h1>Roles</h1>
 				</a>
 			</li>
+			@else 
+			<li class="col-md-2 text-center">				
+				<img src={{url("assets/painel/imgs/funcao-acl.png")}} alt="Albuns" class="img-menu">
+				<h1>Roles - Not Permission</h1>				
+			</li>
+			@endcan
+
+			@can('adm')
 			<li class="col-md-2 text-center">
 				<a href="/painel/permissions">
 					<img src={{url("assets/painel/imgs/permissao-acl.png")}} alt="Musicas" class="img-menu">
 					<h1>Permission</h1>
 				</a>
 			</li>
+			@else 
+			<li class="col-md-2 text-center">				
+				<img src={{url("assets/painel/imgs/funcao-acl.png")}} alt="Albuns" class="img-menu">
+				<h1>Permission - Not Permission</h1>				
+			</li>
+			@endcan
+
 			<li class="col-md-2 text-center">
 				<form action="{{ route('logout') }}" method="POST">
 					{{ csrf_field() }}
-					<button type="submit">
+					<button style="background:#39605e; border:none;" type="submit">
 						<img src={{url("assets/painel/imgs/sair-acl.png")}} alt="Sair" class="img-menu">
 						<h1>Sair</h1>
 					</button>

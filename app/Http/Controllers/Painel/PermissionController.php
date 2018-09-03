@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Permission;
+use Gate;
 
 
 class PermissionController extends Controller
@@ -20,6 +21,11 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = $this->permission->all();
+
+        if(Gate::denies('adm')){
+            return redirect()->back();
+            //abort(403, 'Not Permissions Lists Posts');            
+        }
 
         return view('painel.permissions.index', compact('permissions'));
     }
