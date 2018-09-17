@@ -15,17 +15,17 @@ class PostController extends Controller
     public function __construct(Post $post)
     {
         $this->post = $post;
+
+        //se não tiver permissão ele redireciona para a url anterior
+        if(Gate::denies('view_post'))
+            return redirect()->back();
+            //abort(403, 'Not Permissions Lists Posts');            
+        
     }
 
     public function index()
     {
-        $posts = $this->post->all();
-
-        //se não tiver permissão ele redireciona para a url anterior
-        if(Gate::denies('view_post')){
-            return redirect()->back();
-            //abort(403, 'Not Permissions Lists Posts');            
-        }
+        $posts = $this->post->all();        
 
         return view('painel.posts.index', compact('posts'));
     }

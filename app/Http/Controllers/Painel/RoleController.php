@@ -14,16 +14,16 @@ class RoleController extends Controller
     public function __construct(Role $role)
     {
         $this->role = $role;
+
+        if(Gate::denies('view_post'))
+            return redirect()->back();
+            //abort(403, 'Not Permissions Lists Posts');            
+        
     }
 
     public function index()
     {
-        $roles = $this->role->all();
-
-        if(Gate::denies('view_post')){
-            return redirect()->back();
-            //abort(403, 'Not Permissions Lists Posts');            
-        }
+        $roles = $this->role->all();        
 
         return view('painel.roles.index', compact('roles'));
     }

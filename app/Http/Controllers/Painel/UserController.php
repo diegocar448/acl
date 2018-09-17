@@ -14,16 +14,15 @@ class UserController extends Controller
     public function __construct(User $user)
     {
         $this->user = $user;
+
+        if(Gate::denies('user'))
+            return redirect()->back();
+            //abort(403, 'Not Permissions Lists Posts');           
     }
 
     public function index()
     {
-        $users = $this->user->all();
-
-        if(Gate::denies('user')){
-            return redirect()->back();
-            //abort(403, 'Not Permissions Lists Posts');            
-        } 
+        $users = $this->user->all();        
 
         return view('painel.users.index', compact('users'));
     }
@@ -37,5 +36,19 @@ class UserController extends Controller
         $roles = $user->roles()->get();
 
         return view('painel.users.roles', compact('user', 'roles'));
+    }
+
+    public function edit($id)
+    {        
+        if(Gate::denies('edit-user'))
+           return redirect()->back();
+
+        //Show Form
+    }
+
+    public function update($id)
+    {
+        if(Gate::denies('edit-user'))
+           return redirect()->back();
     }
 }

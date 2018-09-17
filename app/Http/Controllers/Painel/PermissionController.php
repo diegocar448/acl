@@ -16,25 +16,28 @@ class PermissionController extends Controller
     public function __construct(Permission $permission)
     {
         $this->permission = $permission;
+
+        if(Gate::denies('adm'))
+            return redirect()->back();
+            //abort(403, 'Not Permissions Lists Posts');            
+        
     }
+    
 
     public function index()
     {
-        $permissions = $this->permission->all();
-
-        if(Gate::denies('adm')){
-            return redirect()->back();
-            //abort(403, 'Not Permissions Lists Posts');            
-        }
+        $permissions = $this->permission->all();        
 
         return view('painel.permissions.index', compact('permissions'));
     }
+
+    
 
     public function roles($id)
     {
         //Recupera a permission
         $permission = $this->permission->find($id);
-
+        
         //recuperar permissões
         $roles = $permission->roles()->get();
 
